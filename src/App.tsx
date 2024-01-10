@@ -1,15 +1,30 @@
 import { useState } from 'react';
 import './App.css';
+import UseReducerExample from './Pages/UseReducerExample';
+import UseEffectExample from './Pages/UseEffectExample';
+import UseRefExample from './Pages/UseRefExample';
 
 function App() {
-	const [count, setCount] = useState(0);
-
+	const [user, setUser] = useState({ name: '', email: '' });
+	const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		console.log(user);
+	};
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		console.log(user);
+		const inputName = e.target.name;
+		const value = e.target.value;
+		setUser({ ...user, [inputName]: value });
+	};
 	return (
 		<>
-			<h1>{count}</h1>
-			<button onClick={() => setCount(count + 1)}>Increment</button>
-			<button onClick={() => setCount(count - 1)}>Decrement</button>
-			<button onClick={() => setCount(0)}>Reset</button>
+			{/* <form onSubmit={handleSubmit}>
+				<input onChange={handleChange} type='text' name='name' id='name' />
+				<input onChange={handleChange} type='text' name='email' id='email' />
+			</form> */}
+			{/* <UseReducerExample></UseReducerExample> */}
+			{/* <UseEffectExample></UseEffectExample> */}
+			<UseRefExample></UseRefExample>
 		</>
 	);
 }
